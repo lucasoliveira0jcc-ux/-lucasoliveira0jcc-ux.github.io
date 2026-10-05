@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lucas Oliveira — Desenvolvedor de Software</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0f1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --accent: #4f8ef7;
+    --accent2: #7c3aed;
+    --text: #f0f4ff;
+    --muted: #8892a4;
+    --border: #1e2d45;
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { opacity: 0.8; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(11,15,26,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 clamp(1rem, 5vw, 6rem);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav ul a {
+    color: var(--muted);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--text); opacity: 1; }
+
+  /* HERO */
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    padding: clamp(4rem, 8vw, 8rem) clamp(1rem, 5vw, 6rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(79,142,247,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 680px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent);
+    border: 1px solid rgba(79,142,247,0.3);
+    background: rgba(79,142,247,0.07);
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  h1 .line2 {
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background: #3a78e8;
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+
+  /* SECTION */
+  section {
+    padding: clamp(4rem, 6vw, 6rem) clamp(1rem, 5vw, 6rem);
+  }
+
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.6rem;
+  }
+
+  h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .section-desc {
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 3rem;
+    font-size: 1rem;
+  }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 3rem 0;
+  }
+
+  .stat {
+    background: var(--surface);
+    padding: 1.8rem 1.5rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .service-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .service-icon {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: var(--text);
+  }
+
+  .service-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* SKILLS */
+  .skills-section { background: var(--surface); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-group h4 {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .tag.highlight {
+    border-color: rgba(79,142,247,0.3);
+    color: var(--accent);
+    background: rgba(79,142,247,0.07);
+  }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .exp-item {
+    border-left: 2px solid var(--border);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .exp-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text);
+  }
+
+  .exp-company {
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .exp-date {
+    font-size: 0.78rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .exp-item ul {
+    list-style: none;
+    margin-top: 0.6rem;
+  }
+
+  .exp-item ul li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.3rem;
+    line-height: 1.6;
+  }
+
+  .exp-item ul li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--border);
+  }
+
+  /* PROJECT */
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .project-badge {
+    background: rgba(124,58,237,0.12);
+    border: 1px solid rgba(124,58,237,0.25);
+    color: #a78bfa;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+  }
+
+  .project-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .project-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 420px;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+
+  .cta-section h2 {
+    margin-bottom: 0.8rem;
+  }
+
+  .cta-section p {
+    color: var(--muted);
+    max-width: 440px;
+    margin: 0 auto 2rem;
+    font-size: 0.95rem;
+  }
+
+  .cta-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-whatsapp {
+    background: #25d366;
+    color: #fff;
+  }
+
+  .btn-whatsapp:hover {
+    background: #1db954;
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 600px) {
+    nav ul { display: none; }
+    .project-card { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Lucas<span>.</span>dev</div>
+  <ul>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#experiencia">Experiência</a></li>
+    <li><a href="#projeto">Projeto</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Disponível para projetos freelance</div>
+    <h1>
+      Desenvolvimento web<br>
+      <span class="line2">e automação inteligente.</span>
+    </h1>
+    <p class="hero-sub">
+      Sou Lucas Oliveira, desenvolvedor com experiência real em Python, automação com IA, 
+      bancos de dados PostgreSQL e desenvolvimento web. Crio soluções sob medida para 
+      empresas que querem tecnologia funcionando de verdade.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/5585921847089?text=Ol%C3%A1%20Lucas%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto" class="btn btn-primary" target="_blank">
+        💬 Falar no WhatsApp
+      </a>
+      <a href="#servicos" class="btn btn-ghost">Ver serviços</a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- DIFERENCIAIS -->
+<div style="padding: 0 clamp(1rem,5vw,6rem) 4rem;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem; display: flex; flex-direction: column; gap: 0.6rem;">
+      <div style="font-size: 1.3rem;">⚡</div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text);">Entrega rápida</div>
+      <div style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">Trabalho focado no seu prazo. Sem enrolação, sem sumiço — você acompanha o progresso do projeto em tempo real.</div>
+    </div>
+
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem; display: flex; flex-direction: column; gap: 0.6rem;">
+      <div style="font-size: 1.3rem;">🎯</div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text);">Experiência profissional real</div>
+      <div style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">Já trabalhei em empresa de tecnologia desenvolvendo sistemas, automações e integrações com IA — não é teoria, é prática.</div>
+    </div>
+
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem; display: flex; flex-direction: column; gap: 0.6rem;">
+      <div style="font-size: 1.3rem;">💬</div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text);">Comunicação direta</div>
+      <div style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">Você fala direto com quem desenvolve. Sem intermediários, sem telefone sem fio — suas ideias chegam exatamente como você quer.</div>
+    </div>
+
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem; display: flex; flex-direction: column; gap: 0.6rem;">
+      <div style="font-size: 1.3rem;">🌎</div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text);">Atendo todo o Brasil</div>
+      <div style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">100% remoto e sem custo extra de deslocamento. Reuniões por vídeo, entregas online e suporte onde você estiver.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="servicos">
+  <div class="section-label">O que eu faço</div>
+  <h2>Serviços</h2>
+  <p class="section-desc">Do site institucional ao sistema complexo — entrego código que funciona e resolve problemas reais.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🌐</div>
+      <h3>Sites e landing pages</h3>
+      <p>Sites institucionais, páginas de captura e portfólios responsivos com HTML5, CSS3 e JavaScript. Rápidos, bonitos e prontos para vender.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚙️</div>
+      <h3>Automação com Python</h3>
+      <p>Scripts que eliminam tarefas repetitivas, processam dados automaticamente e integram sistemas. Economize horas de trabalho manual.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤖</div>
+      <h3>Integração com IA</h3>
+      <p>Conecte seu negócio a APIs de Inteligência Artificial para classificar dados, gerar conteúdo, responder clientes ou otimizar processos.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🗄️</div>
+      <h3>Banco de dados</h3>
+      <p>Modelagem, criação e otimização de bancos PostgreSQL. Dados organizados, seguros e com performance garantida.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <h3>Sistemas web</h3>
+      <p>Aplicações sob medida para o seu negócio — cadastros, dashboards, painéis administrativos e sistemas de gestão internos.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📦</div>
+      <h3>WordPress e plataformas</h3>
+      <p>Criação, manutenção e personalização de sites em WordPress. Lojas virtuais, blogs e portais completos.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-label">Tecnologias</div>
+  <h2>Stack técnica</h2>
+  <p class="section-desc">Ferramentas com as quais trabalho no dia a dia.</p>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h4>Linguagens</h4>
+      <div class="skill-tags">
+        <span class="tag highlight">Python</span>
+        <span class="tag highlight">JavaScript</span>
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">SQL</span>
+
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Banco de dados & IA</h4>
+      <div class="skill-tags">
+        <span class="tag highlight">PostgreSQL</span>
+        <span class="tag highlight">APIs de IA</span>
+        <span class="tag">Automação de dados</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Ferramentas</h4>
+      <div class="skill-tags">
+        <span class="tag highlight">Git / GitHub</span>
+        <span class="tag">WordPress</span>
+
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Idiomas</h4>
+      <div class="skill-tags">
+        <span class="tag highlight">Português — nativo</span>
+        <span class="tag">Inglês — intermediário</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section id="experiencia">
+  <div class="section-label">Trajetória</div>
+  <h2>Experiência profissional</h2>
+  <p class="section-desc">Trabalhei em ambientes reais com demandas reais.</p>
+
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title">Desenvolvedor / Programação com IA</div>
+          <div class="exp-company">Gigamedia Consultoria</div>
+        </div>
+        <div class="exp-date">Out 2025 – Ago 2026</div>
+      </div>
+      <ul>
+        <li>Desenvolvi scripts e automações em Python com aplicação de IA na otimização de dados</li>
+        <li>Criei interfaces web responsivas com HTML5, CSS3 e JavaScript</li>
+        <li>Administrei e otimizei bancos de dados PostgreSQL</li>
+        <li>Administrei plataformas em WordPress e prestei suporte técnico completo</li>
+        <li>Utilizei Git/GitHub para versionamento de projetos</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title">Suporte Operacional / Logística</div>
+          <div class="exp-company">Apiguana</div>
+        </div>
+        <div class="exp-date">Out 2025 – Dez 2025</div>
+      </div>
+      <ul>
+        <li>Acompanhei processos operacionais em ambiente de alta demanda</li>
+        <li>Apliquei raciocínio lógico para identificar e resolver intercorrências no fluxo de trabalho</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECT -->
+<section id="projeto">
+  <div class="section-label">Em desenvolvimento</div>
+  <h2>Projeto em destaque</h2>
+  <p class="section-desc">O que estou construindo agora.</p>
+
+  <div class="project-card">
+    <div style="flex: 1; min-width: 220px;">
+      <div class="project-badge">Em andamento</div>
+      <h3>Sistema bancário em Java</h3>
+      <p>
+        Sistema completo de gestão bancária desenvolvido em Java, com foco em arquitetura sólida, 
+        regras de negócio robustas e boas práticas de programação orientada a objetos. 
+        Um projeto que demonstra capacidade para sistemas complexos e de missão crítica.
+      </p>
+      <div class="project-stack">
+        <span class="tag highlight">Java</span>
+        <span class="tag">Spring Boot</span>
+        <span class="tag">POO</span>
+        <span class="tag">Arquitetura de sistemas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA -->
+<section class="cta-section" id="contato">
+  <div class="section-label">Contato</div>
+  <h2>Vamos trabalhar juntos?</h2>
+  <p>Me conta seu projeto pelo WhatsApp ou e-mail. Respondo rápido e sem enrolação.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/5585921847089?text=Ol%C3%A1%20Lucas%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto" class="btn btn-whatsapp" target="_blank">
+      💬 WhatsApp — (85) 92184-7089
+    </a>
+    <a href="mailto:lucasoliveiraojcc@gmail.com" class="btn btn-ghost">
+      ✉️ lucasoliveiraojcc@gmail.com
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Lucas Alves Lemos de Oliveira · Fortaleza, CE · Desenvolvedor Freelancer</p>
+</footer>
+
+</body>
+</html>
